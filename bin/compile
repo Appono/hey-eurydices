@@ -221,6 +221,9 @@ fi
 # Force scikit-learn to use a specific script
 source $BIN_DIR/steps/scikit-learn
 
+# NLTK corpora
+source $BIN_DIR/steps/nltk-corpora
+
 # Install dependencies with Pip.
 puts-step "Installing dependencies using Pip ($PIP_VERSION)"
 
@@ -242,6 +245,7 @@ bpwatch stop collectstatic
 #
 
 # Set context environment variables.
+set-env NLTK_DATA /app/.heroku/nltk_data
 set-env PATH '$HOME/.heroku/python/bin:$PATH'
 set-env PYTHONUNBUFFERED true
 set-env PYTHONHOME /app/.heroku/python
