@@ -206,7 +206,10 @@ bpwatch start geodjango_install
   source $BIN_DIR/steps/geos
   source $BIN_DIR/steps/proj4
   source $BIN_DIR/steps/gdal
-bpwatch stop geodjango_install
+bpwatch stop geodjango_installn
+
+# Numpy/scipy support
+source $BIN_DIR/steps/numpy-scipy
 
 # Install Mercurial if it appears to be required.
 if (grep -Fiq "hg+" requirements.txt) then
@@ -214,6 +217,9 @@ if (grep -Fiq "hg+" requirements.txt) then
     /app/.heroku/python/bin/pip install --use-mirrors mercurial | cleanup | indent
   bpwatch stop mercurial_install
 fi
+
+# Force scikit-learn to use a specific script
+source $BIN_DIR/steps/scikit-learn
 
 # Install dependencies with Pip.
 puts-step "Installing dependencies using Pip ($PIP_VERSION)"
