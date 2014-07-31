@@ -211,6 +211,12 @@ bpwatch stop geodjango_installn
 # Numpy/scipy support
 source $BIN_DIR/steps/numpy-scipy
 
+# Maxmind GeoIP C Library support.
+# See [`bin/steps/geoip`](geoip.html).
+bpwatch start geoip_install
+  source $BIN_DIR/steps/geoip
+bpwatch stop geoip_install
+
 # Install Mercurial if it appears to be required.
 if (grep -Fiq "hg+" requirements.txt) then
   bpwatch start mercurial_install
